@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} Task List {% endblock %}
+{% block contents %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            {% if data %}
+            <div class="bg-success text-light p-3 rounded">
+                <h1 class="text-center">Completed Tasks</h1>
+            </div>
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in data %}
+                    <tr>
+                        <td>{{ item.taskTitle }}</td>
+                        <td>{{ item.taskDescription }}</td>
+                        <td>
+                            {% if item.is_completed == False %}
+                            <span class="badge bg-warning text-dark">Incomplete</span>
+                            {% else %}
+                            <span class="badge bg-success">Complete</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_completed_task' item.id %}" class="btn btn-danger">Delete</a>
+                            <a href="{% url 'update_to_incomplete' item.id %}" class="btn btn-warning">Mark Incomplete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'tasks' %}" class="btn btn-primary mt-3">Back to Task List</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center">
+        <h2>No tasks available</h2>
+        <a href="{% url 'tasks' %}" class="btn btn-primary mt-3">Go to Task Page</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

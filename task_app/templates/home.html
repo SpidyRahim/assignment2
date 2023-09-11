@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %} Task Management {% endblock %}
+{% block contents %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center mb-4">Welcome to Tasks Management App</h1>
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'tasks' %}" class="btn btn-primary me-3">Tasks</a>
+                <a href="{% url 'completed_tasks' %}" class="btn btn-success">Completed Tasks</a>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 10px 20px;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+</style>
+{% endblock %}
